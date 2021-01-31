@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block customcss %}
+<style>
+  #id_title, #id_author,#id_url{
+    position:relative;
+    width:250px;
+    height:35px;
+    border:solid;
+    border-width: 0.5px;
+    margin-left:10px
+  }
+  #id_content{
+    position:relative;
+    width:320px;
+    height:180px;
+    border:solid;
+    border-width:0.5px;
+    margin-left:10px;
+  }
+  #id_sex,#id_age,#id_category{
+    position:relative;
+    margin-left:10px;
+  }
+  div.text{
+    position:relative;
+    margin-left:10px;
+    top:10px;
+  }
+  address{background-color: rgb(194, 194, 194);
+ color: #FFFFFF;
+ text-align: center;
+ position: relative;
+ bottom:0;
+ width:100%;
+ margin-top:30px;
+ }
+  address a{
+     color:#FFFEFF
+  }
+  div.box{
+    width:100%;
+   margin:auto;
+   background-color:#FFFFFF;
+   position: relative;
+   padding-right:0px;
+   padding-left:10px;
+   padding-bottom:100px;
+   min-height: 100vh;
+   box-sizing: border-box;}
+</style>
+{% endblock customcss %}
+{% block header %}
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'list' %}" style="font-size: 35px; font-family: 'Yusei Magic', sans-serif;">みんなのバイブル</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'list' %}">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              カテゴリ
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="{% url 'movie' %}">映画</a></li>
+              <li><a class="dropdown-item" href="{% url 'novel' %}">小説</a></li>
+              <li><a class="dropdown-item" href="{% url 'comic' %}">漫画</a></li>
+              <li><a class="dropdown-item" href="{% url 'anime' %}">アニメ</a></li>
+              <li><a class="dropdown-item" href="{% url 'practical' %}">実用書</a></li>
+              <li><a class="dropdown-item" href="{% url 'others' %}">その他</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  </header>
+{% endblock header %}
+{% block content %}
+<div class="box">
+  <p>＊は必須項目です。</p>
+<form action='' method='POST' enctype='multipart/form-data'>{% csrf_token %}
+    
+    <div class='text'><p>ニックネーム＊</p></div>
+    <p>{{form.author}}</p>   
+
+    <div class='text'><p>カテゴリー＊</p></div>
+    <p>{{form.category}}</p>
+
+      <div class='text'><p>タイトル＊</p></div>
+        <p>{{form.title}}</p>
+        
+    <div class='text'><p>内容＊</p></div>
+        <p>{{ form.content }}</p>
+        
+    <div class='text'><p>性別＊</p></div>
+        <p>{{form.sex}}</p>
+
+    <div class='text'><p>年代＊</p></div>
+        <p>{{form.age}}</p>
+
+    <div class='text'><p>URL(あれば)</p></div>
+        <p>{{form.url}}</p>
+    <input type='submit' value='投稿する'/>
+    <input type="button" value='取り消し' onclick="history.back()"/>
+    </form>
+    </div>
+{% endblock content %}
+{% block footer %}
+
+{% endblock footer %}

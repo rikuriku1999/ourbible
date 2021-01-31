@@ -1,0 +1,339 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block customcss %}
+<style>
+div.box{
+  width:100%;
+ margin:auto;
+ background-color:#FFFFFF;
+ position: relative;
+ padding-right:0px;
+ padding-bottom:100px;
+ min-height: 100px;
+ box-sizing: border-box;}
+
+address{background-color: rgb(194, 194, 194);
+ color: #FFFFFF;
+ text-align: center;
+ position: relative;
+ bottom:0;
+ width:100%;
+ }
+
+ div.footer{
+   padding-bottom:70px;
+ }
+
+
+
+
+  .qbox {
+    position: relative;
+    margin: 0px;
+    padding: 25px 20px 7px;
+    border-top: solid 1.5px rgb(104, 88, 250);
+    height:113px;
+    overflow:hidden;
+    text-overflow :ellipsis;
+}
+
+.kakomi-box4 {
+position:relative;
+ margin: 10px auto;
+ padding: 1px 5px 0px 0px;
+ width: 90%;
+ background-color: #FFF5EE; /* 背景色 */
+ box-shadow: 0 0 5px 1px #ccc; /* 影 */
+}
+
+.qbox .box-title {
+    position: absolute;
+    display: inline-block;
+    top: -1.5px;
+    left: -2px;
+    padding: 0 9px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 17px;
+    background: rgb(104, 88, 250);
+    color: #ffffff;
+    
+}
+.qbox p {
+    margin: 0; 
+    padding: 0;
+    font-size: 16px;  
+}
+
+.qbox h2{
+  font-size:16px;
+  display: inline-block;
+  border-bottom:dashed 2px #cc8624;
+  margin-left:1em;
+}
+.kakomi-box4 a{
+ position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   text-indent:-999px;
+   z-index: 2; /* 必要であればリンク要素の重なりのベース順序指定 */
+}
+
+
+div.create{
+  background-color:rgb(140, 117, 241);
+}
+
+.create a{
+  position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   text-indent:-999px;
+   z-index: 2; 
+}
+
+.create h4{
+  color:black;
+}
+
+.search{
+  width:260px;
+}
+
+.kakomi-box4 h3{
+  font-size:16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.kakomi-box4 p{
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+}
+
+.good {
+  position:absolute;
+  right:20px;
+  top:10px;
+}
+
+.search_container{
+  box-sizing: border-box;
+  position: relative;
+  border: 1px solid #999;
+  display: block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  height: 2.3em;
+  width: 260px;
+  overflow: hidden;
+}
+.search_container input[type="text"]{
+  border: none;
+  height: 2.0em;
+}
+.search_container input[type="text"]:focus {
+  outline: 0;
+}
+.search_container input[type="submit"]{
+  cursor: pointer;
+  font-family: FontAwesome;
+  font-size: 1.3em;
+  border: none;
+  background: none;
+  color: #3879D9;
+  position: absolute;
+  width: 2.5em;
+  height: 2.5em;
+  right: 0;
+  top: -10px;
+  outline : none;
+}
+
+table{
+margin:0 auto;
+}
+
+.intro{
+  margin:5px 10px 5px;
+}
+a.btn--orange {
+  color: #fff;
+  background-color: #eb6100;
+  border-bottom: 5px solid #b84c00;
+}
+a.btn--orange:hover {
+  margin-top: 3px;
+  color: #fff;
+  background: #f56500;
+  border-bottom: 2px solid #b84c00;
+}
+a.btn--shadow {
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+}
+.post {
+  margin:8px;
+  padding-left:1px;
+  padding-right:1px;
+}
+
+.page{
+  margin:auto;
+  text-align: center;
+}
+
+a.btn--oran {
+  color: #fff;
+  background-color: #999999;
+
+}
+.btn--oran:hover,
+a.btn--oran:hover {
+  color: #fff;
+  background: #bda7f0;
+}
+
+a.btn--radius {
+   border-radius: 100vh;
+}
+
+</style>
+{% endblock customcss %}
+{% block header %}
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'list' %}" style="font-size: 35px; font-family: 'Yusei Magic', sans-serif;">みんなのバイブル</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'list' %}">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              カテゴリ
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="{% url 'movie' %}">映画</a></li>
+              <li><a class="dropdown-item" href="{% url 'novel' %}">小説</a></li>
+              <li><a class="dropdown-item" href="{% url 'comic' %}">漫画</a></li>
+              <li><a class="dropdown-item" href="{% url 'anime' %}">アニメ</a></li>
+              <li><a class="dropdown-item" href="{% url 'practical' %}">実用書</a></li>
+              <li><a class="dropdown-item" href="{% url 'others' %}">その他</a></li>
+            </ul>
+          </li>
+          {% if form %}
+          <div class="search">
+            <form method="POST" action="" class="search_container">{% csrf_token %}
+            <div class="text" size="25">{{ form.search }}</div>
+            <input type="submit" value="&#xf002">
+            </form>
+            </div>
+            {% endif %}
+        </ul>
+      </div>
+    </div>
+    <div class = "post">
+    <a href="{% url 'create' %}" class="btn btn--orange btn--cubic btn--shadow"><i class="fas fa-pencil-alt"></i> 投稿する (匿名・登録不要)</a>
+    </div>
+  </nav>
+  </header>
+  
+  <div class ="intro">
+    <h8 style="font-size: 20px; font-family: 'Yusei Magic', sans-serif;">小説、映画、漫画から実用書までどんなジャンルでも！<br>感動や自分のバイブルを共有しよう！
+    </h8>
+    </div>
+    <hr>
+<div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      並び順
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      <li><a class="dropdown-item" href="{{ url }}new">新着順</a></li>
+      <li><a class="dropdown-item" href="{{ url }}good">いいね順</a></li>
+    </ul>
+
+  </div>
+
+{% endblock header %}
+{% block content %}
+<script type="text/javascript">
+  function keep_scroll_reload() {
+            var re = /&page_x=(\d+)&page_y=(\d+)/;
+            var page_x = document.documentElement ? document.documentElement.scrollLeft : document.body.scrollLeft;
+            var page_y = document.documentElement ? document.documentElement.scrollTop : document.body.scrollTop;
+            var position = '&page_x=' + page_x + '&page_y=' + page_y;
+            if(!url.match(re)) {
+                    //初回
+                    location.href = url + position;
+            } else {
+                    //2回目以降
+                    location.href = url.replace(/&page_x=(\d+)&page_y=(\d+)/,position);
+            }
+  }
+  
+  // スクロール位置を復元
+  function restore_scroll() {
+          var re = /&page_x=(\d+)&page_y=(\d+)/;
+          if(window.location.href.match(re)) {
+                  var position = window.location.href.match(re)
+                  window.scrollTo(position[1],position[2]);
+          }
+  }
+  
+  (window.onload = function() {
+          restore_scroll();
+  })();
+    </script>
+
+<div class="box">
+<div class="listcontainer">
+{%for item in numbers %}
+<div class ="kakomi-box4">
+  <a href="{% url 'detail' item.pk %}"></a>
+  <div class="qbox">
+    <div class="good"><svg class="bi bi-heart" width="1em" height="1em" viewBox="0 0 16 16" fill="red" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z" clip-rule="evenodd"/>
+    </svg>{{item.good}}
+    </div>
+    <span class="box-title">{{item.category}}</span>
+    <h2>{{item.title}}</h2>
+    <h3>{{item.content}}</h3>
+  </div>
+  <p>
+ {{item.created_date}}
+ </p>
+</div>
+{% endfor %}
+{% if numbers.has_next %}
+<div class="page">
+<a class="btn btn--oran btn--radius" href="?page={{ numbers.next_page_number }}">More</a>
+</div>
+{% endif %}
+  <div class="loading" style="display: none;">
+Loading...
+</div>
+</div>
+</div>
+<script>
+  var infinite = new Waypoint.Infinite({
+    element: $('.kakomi-box4')[0],
+    onBeforePageLoad: function () {
+      $('.loading').show();
+    },
+    onAfterPageLoad: function ($items) {
+      $('.loading').hide();
+    }
+  });
+</script>
+{% endblock content %}
+{% block footer %}
+{% endblock footer %}
