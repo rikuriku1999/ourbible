@@ -1,53 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block customcss %}
-<style>
-  #id_title, #id_author,#id_url{
-    position:relative;
-    width:250px;
-    height:35px;
-    border:solid;
-    border-width: 0.5px;
-    margin-left:10px
-  }
-  #id_content{
-    position:relative;
-    width:320px;
-    height:180px;
-    border:solid;
-    border-width:0.5px;
-    margin-left:10px;
-  }
-  #id_sex,#id_age,#id_category{
-    position:relative;
-    margin-left:10px;
-  }
-  div.text{
-    position:relative;
-    margin-left:10px;
-    top:10px;
-  }
-  address{background-color: rgb(194, 194, 194);
- color: #FFFFFF;
- text-align: center;
- position: relative;
- bottom:0;
- width:100%;
- margin-top:30px;
- }
-  address a{
-     color:#FFFEFF
-  }
-  div.box{
-    width:100%;
-   margin:auto;
-   background-color:#FFFFFF;
-   position: relative;
-   padding-right:0px;
-   padding-left:10px;
-   padding-bottom:100px;
-   min-height: 100vh;
-   box-sizing: border-box;}
-</style>
+<link rel='stylesheet' type='text/css' href="{% static 'css/create-style.css' %}">
+
 {% endblock customcss %}
 {% block header %}
 <header class="sticky-top">

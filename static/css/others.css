@@ -1,0 +1,23 @@
+html,
+div.box{
+    width:100%;
+   margin:auto;
+   background-color:#FFFFFF;
+   position: relative;
+   padding-right:0px;
+   padding-bottom:0px;
+   min-height: 50vh;
+   box-sizing: border-box;}
+  
+  address{background-color: rgb(194, 194, 194);
+   color: #FFFFFF;
+   text-align: center;
+   position: relative;
+   bottom:0;
+   width:100%;
+   margin-top:30px;
+   }
+  
+   div.footer{
+     padding-bottom:70px;
+   }
