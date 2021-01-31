@@ -29,7 +29,7 @@ class DetailForm(forms.Form):
     title = forms.CharField(
         required=True,
         widget=forms.TextInput(
-            attrs={'placeholder':'海辺のカフカ'}
+            attrs={'placeholder':'本や映画のタイトル'}
         ),
         max_length=30,
     )
@@ -37,7 +37,7 @@ class DetailForm(forms.Form):
         max_length=500,
         required=True,
         widget=forms.Textarea(
-            attrs={'placeholder':'例　この本を読んで感動しました。'}
+            attrs={'placeholder':'あらすじや感想、ご自身への本や映画による影響'}
         )
     )
     category = forms.ChoiceField(
@@ -56,7 +56,7 @@ class DetailForm(forms.Form):
         max_length = 100,
         required = False,
         widget = forms.TextInput(
-            attrs={'placeholder':'あれば記入'}
+            attrs={'placeholder':'あればお願いします'}
         )
     )
     author = forms.CharField(
