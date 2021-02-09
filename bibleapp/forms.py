@@ -53,7 +53,7 @@ class DetailForm(forms.Form):
         choices = AGE_CHOICES
     )
     url = forms.URLField(
-        max_length = 100,
+        max_length = 300,
         required = False,
         widget = forms.TextInput(
             attrs={'placeholder':'あればお願いします'}

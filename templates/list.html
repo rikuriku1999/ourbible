@@ -95,6 +95,9 @@
 
 <div class="box">
 <div class="listcontainer">
+  <script>
+    var a = 0
+  </script>
 {%for item in numbers %}
 <div class ="kakomi-box4">
   <a href="{% url 'detail' item.pk %}"></a>
@@ -111,6 +114,7 @@
  {{item.created_date}}
  </p>
 </div>
+<script type="text/javascript" src="{% static 'js/list-script.js' %}"></script>
 {% endfor %}
 {% if numbers.has_next %}
 <div class="page">

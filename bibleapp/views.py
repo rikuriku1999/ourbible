@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login ,logout
 from . import forms
-
+import random
 from django.contrib.auth import get_user_model
 from django.views import generic
 from django.template.loader import render_to_string
@@ -29,9 +29,18 @@ def questionfunc(request):
 def termsfunc(request):
     return render(request,'terms.html',)
 
+def privacyfunc(request):
+    return render(request,'privacy.html',)
+
 def listfunc(request):
     form = forms.SearchForm(request.POST or None) 
     object_list = Biblemodel.objects.all()
+    url = request.build_absolute_uri()
+    urllist = url.split("/")
+    url = ""
+    for i in range(3):
+        url = url + urllist[i] +  "/"
+    url = url + "list/"
     if request.method == "POST":
         if form.is_valid():
             search = form.cleaned_data['search']
@@ -50,6 +59,7 @@ def listfunc(request):
         'object_list':object_list,
         'form':form,
         'numbers':numbers,
+        'url':url,
     })
 def goodlistfunc(request):
     form = forms.SearchForm(request.POST or None) 
@@ -58,6 +68,7 @@ def goodlistfunc(request):
         if form.is_valid():
             search = form.cleaned_data['search']
             object_list = Biblemodel.objects.filter(title__contains = search).order_by('-good')
+
     else :
         object_list = Biblemodel.objects.all().order_by('-good')
     page = request.GET.get('page', 1)

@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.urls import path
 from . import views
-from .views import listfunc, createfunc, goodfunc, detailfunc, novelfunc, moviefunc, animefunc, comicfunc, practicalfunc, othersfunc, novelnewfunc, novelgoodfunc, movienewfunc, moviegoodfunc,animenewfunc, animegoodfunc, practicalnewfunc, practicalgoodfunc, comicnewfunc, comicgoodfunc, othersnewfunc, othersgoodfunc,newlistfunc, goodlistfunc, questionfunc, termsfunc
+from .views import listfunc, createfunc, goodfunc, detailfunc, novelfunc, moviefunc, animefunc, comicfunc, practicalfunc, othersfunc, novelnewfunc, novelgoodfunc, movienewfunc, moviegoodfunc,animenewfunc, animegoodfunc, practicalnewfunc, practicalgoodfunc, comicnewfunc, comicgoodfunc, othersnewfunc, othersgoodfunc,newlistfunc, goodlistfunc, questionfunc, termsfunc, privacyfunc
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView 
 
 urlpatterns = [
+    path('',listfunc,name='list'),
     path('list/',listfunc,name='list'),
     path('create/',createfunc,name='create'),
     path('good/<int:pk>',goodfunc,name = 'good'),
@@ -39,4 +40,5 @@ urlpatterns = [
 
     path('question',questionfunc,name='question'),
     path('terms',termsfunc,name='terms'),
+    path('privacy',privacyfunc,name='privacy'),
 ]
