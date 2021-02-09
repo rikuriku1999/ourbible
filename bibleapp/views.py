@@ -61,6 +61,30 @@ def listfunc(request):
         'numbers':numbers,
         'url':url,
     })
+
+def randomlistfunc(request):
+    form = forms.SearchForm(request.POST or None) 
+    object_list = Biblemodel.objects.all()
+    if request.method == "POST":
+        if form.is_valid():
+            search = form.cleaned_data['search']
+            object_list = Biblemodel.objects.filter(title__contains = search).order_by('?')
+
+    else :
+        object_list = Biblemodel.objects.all().order_by('?')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(object_list, 8)
+    try:
+        numbers = paginator.page(page)
+    except PageNotAnInteger:
+        numbers = paginator.page(1)
+    except EmptyPage:
+        numbers = paginator.page(paginator.num_pages)
+    return render(request, 'list.html',{
+        'numbers':numbers,
+        'form':form,
+    })
+
 def goodlistfunc(request):
     form = forms.SearchForm(request.POST or None) 
     object_list = Biblemodel.objects.all()
@@ -147,6 +171,27 @@ def novelnewfunc(request):
         'url':url,
         'numbers':numbers,
     })
+def novelrandomfunc(request):
+    object_list = Biblemodel.objects.filter(category = '小説').order_by("?")
+
+    url = request.build_absolute_uri()
+    urllist = url.split("/")
+    url = ""
+    for i in range(4):
+        url = url + urllist[i] + "/"
+    page = request.GET.get('page', 1)
+    paginator = Paginator(object_list, 8)
+    try:
+        numbers = paginator.page(page)
+    except PageNotAnInteger:
+        numbers = paginator.page(1)
+    except EmptyPage:
+        numbers = paginator.page(paginator.num_pages)
+    return render(request, 'list.html',{
+        'object_list':object_list,
+        'url':url,
+        'numbers':numbers,
+    })
 def novelgoodfunc(request):
     object_list = Biblemodel.objects.filter(category = '小説').order_by("-good")
 
@@ -192,6 +237,27 @@ def moviefunc(request):
     })
 def movienewfunc(request):
     object_list = Biblemodel.objects.filter(category = '映画')
+
+    url = request.build_absolute_uri()
+    urllist = url.split("/")
+    url = ""
+    for i in range(4):
+        url = url + urllist[i] + "/"
+    page = request.GET.get('page', 1)
+    paginator = Paginator(object_list, 8)
+    try:
+        numbers = paginator.page(page)
+    except PageNotAnInteger:
+        numbers = paginator.page(1)
+    except EmptyPage:
+        numbers = paginator.page(paginator.num_pages)
+    return render(request, 'list.html',{
+        'object_list':object_list,
+        'url':url,
+        'numbers':numbers,
+    })
+def movierandomfunc(request):
+    object_list = Biblemodel.objects.filter(category = '映画').order_by('?')
 
     url = request.build_absolute_uri()
     urllist = url.split("/")
@@ -296,6 +362,27 @@ def comicgoodfunc(request):
         'url':url,
         'numbers':numbers,
     })
+def comicrandomfunc(request):
+    object_list = Biblemodel.objects.filter(category = '漫画').order_by("?")
+
+    url = request.build_absolute_uri()
+    urllist = url.split("/")
+    url = ""
+    for i in range(4):
+        url = url + urllist[i] + "/"
+    page = request.GET.get('page', 1)
+    paginator = Paginator(object_list, 8)
+    try:
+        numbers = paginator.page(page)
+    except PageNotAnInteger:
+        numbers = paginator.page(1)
+    except EmptyPage:
+        numbers = paginator.page(paginator.num_pages)
+    return render(request, 'list.html',{
+        'object_list':object_list,
+        'url':url,
+        'numbers':numbers,
+    })
     
 def practicalfunc(request):
     object_list = Biblemodel.objects.filter(category = '実用書')
@@ -341,6 +428,27 @@ def practicalnewfunc(request):
     })
 def practicalgoodfunc(request):
     object_list = Biblemodel.objects.filter(category = '実用書').order_by("-good")
+
+    url = request.build_absolute_uri()
+    urllist = url.split("/")
+    url = ""
+    for i in range(4):
+        url = url + urllist[i] + "/"
+    page = request.GET.get('page', 1)
+    paginator = Paginator(object_list, 8)
+    try:
+        numbers = paginator.page(page)
+    except PageNotAnInteger:
+        numbers = paginator.page(1)
+    except EmptyPage:
+        numbers = paginator.page(paginator.num_pages)
+    return render(request, 'list.html',{
+        'object_list':object_list,
+        'url':url,
+        'numbers':numbers,
+    })
+def practicalrandomfunc(request):
+    object_list = Biblemodel.objects.filter(category = '実用書').order_by("?")
 
     url = request.build_absolute_uri()
     urllist = url.split("/")
@@ -424,6 +532,27 @@ def animegoodfunc(request):
         'url':url,
         'numbers':numbers,
     })
+def animerandomfunc(request):
+    object_list = Biblemodel.objects.filter(category = 'アニメ').order_by("?")
+
+    url = request.build_absolute_uri()
+    urllist = url.split("/")
+    url = ""
+    for i in range(4):
+        url = url + urllist[i] + "/"
+    page = request.GET.get('page', 1)
+    paginator = Paginator(object_list, 8)
+    try:
+        numbers = paginator.page(page)
+    except PageNotAnInteger:
+        numbers = paginator.page(1)
+    except EmptyPage:
+        numbers = paginator.page(paginator.num_pages)
+    return render(request, 'list.html',{
+        'object_list':object_list,
+        'url':url,
+        'numbers':numbers,
+    })
 
 def othersfunc(request):
     object_list = Biblemodel.objects.filter(category = 'その他')
@@ -469,6 +598,27 @@ def othersnewfunc(request):
     })
 def othersgoodfunc(request):
     object_list = Biblemodel.objects.filter(category = 'その他').order_by("-good")
+
+    url = request.build_absolute_uri()
+    urllist = url.split("/")
+    url = ""
+    for i in range(4):
+        url = url + urllist[i] + "/"
+    page = request.GET.get('page', 1)
+    paginator = Paginator(object_list, 8)
+    try:
+        numbers = paginator.page(page)
+    except PageNotAnInteger:
+        numbers = paginator.page(1)
+    except EmptyPage:
+        numbers = paginator.page(paginator.num_pages)
+    return render(request, 'list.html',{
+        'object_list':object_list,
+        'url':url,
+        'numbers':numbers,
+    })
+def othersrandomfunc(request):
+    object_list = Biblemodel.objects.filter(category = 'その他').order_by("?")
 
     url = request.build_absolute_uri()
     urllist = url.split("/")
